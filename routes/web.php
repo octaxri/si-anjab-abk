@@ -2,17 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
-    return view('Theme/AdminLTE/Master');
+    return view('AnalisisJabatan.PetaJabatan');
+});
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('analisisjabatan', 'AnalisisJabatanController@index')->name('user.anjab');
+    Route::get('analisisbebankerja', 'AnalisisBebanKerjaController@index')->name('user.abk');
+    Route::get('evaluasijabatan', 'EvaluasiJabtanController@index')->name('user.evajab');
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('analisisjabatan', 'AnalisisJabatanController@index')->name('admin.anjab');
+    Route::get('analisisbebankerja', 'AnalisisBebanKerjaController@index')->name('admin.abk');
+    Route::get('evaluasijabatan', 'EvaluasiJabtanController@index')->name('admin.evajab');
 });
